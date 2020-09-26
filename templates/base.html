@@ -17,18 +17,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">ToDo <i class="fa fa-check-square-o"></i></a>
-        <div class="collapse navbar-collapse  navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right btn-info">
-                <li><a href="#contact" data-toggle="modal" style="color:#000;"><i
-                        id="plus-icon" class="fa fa-plus"></i>&nbsp;Add New Task</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
+{% include 'includes/navbar.html' %}
+
+{% block content %}
 <main class="container">
     <div class="row">
         <div class="col-md-9">
@@ -126,6 +118,7 @@
         </div> <!-- end col-md-3 -->
     </div> <!-- end row -->
 </main>
+{% endblock %}
 
 <footer id="footer" class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
