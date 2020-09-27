@@ -3,6 +3,7 @@ import core.views as views
 
 
 urlpatterns = [
-    path('', views.BasicView.as_view(), name='todo'),
+    path('', views.ProjectListView.as_view(), name='todo'),
+    path('<str:slug>/', views.ProjectDetailView.as_view(), name='project_detail'),
 
 ]

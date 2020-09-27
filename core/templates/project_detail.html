@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <main class="container">
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3>{{ project.title }} <i class="fa fa-check-square-o"></i></h3>
+                        <h4>{{ project.description }}</h4>
+                        <br/>
+
+                        <form class="form-horizontal form-inline">
+                            <div class="form-group">
+                                <div id="project-input" class="col-sm-6">
+                                    <input id="project-name" type="text" class="form-control"
+                                           placeholder="Rename Your Project">
+                                </div> <!--col-sm-6 -->
+                                <div id="name-button" class="col-sm-1">
+                                    <button id="project-name-button" type="submit" class="btn btn-default">
+                                        Submit
+                                    </button>
+                                </div> <!-- col-sm-2 -->
+                            </div> <!-- form-group -->
+                        </form>
+
+                    </div> <!--panel-heading -->
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr id="headerRow">
+                                <th>List Title</th>
+                                <th>Completed</th>
+                                <th>Update</th>
+                                <th>Remove</th>
+                                <th>Priority</th>
+                                <th>Due Date</th>
+                            </tr>
+                            </thead>
+
+                            {% for task in tasks %}
+                                <tbody id="task-list">
+                                <tr>
+                                    <td class="task word-td vert-align">{{ task.title }}</td>
+                                    <td class=" vert-align">
+                                        <button type="button" class="unchecked btn btn-default"><i
+                                                class="fa fa-check"></i>
+                                        </button>
+                                    </td>
+                                    <td class=" vert-align">
+                                        <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td class=" vert-align">
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </td>
+                                    <td>{{ task.priority }}</td>
+                                    <td>{{ task.due_date }}</td>
+                                </tr>
+                                </tbody>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div> <!-- panel panel-primary -->
+            </div>
+
+            <div class="col-md-3">
+                <div class="container">
+                    <div>
+                        <ul class="nav navbar-nav navbar-left btn-info">
+                            <li><a href="#contact" data-toggle="modal" style="color:#000;">
+                                <i id="plus-icon" class="fa fa-plus"></i>&nbsp;Add New Task</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

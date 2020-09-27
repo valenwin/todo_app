@@ -1,19 +1,31 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 class Project(models.Model):
-    title = models.CharField(max_length=120)
+    title = models.CharField(max_length=120, unique=True)
     owner = models.ForeignKey(User,
                               related_name='project_owner',
                               on_delete=models.CASCADE)
     description = models.TextField()
+    slug = models.SlugField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('core:project_detail',
+                       kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -38,7 +50,7 @@ class Task(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __str__(self):
         return self.title

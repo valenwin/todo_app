@@ -6,7 +6,9 @@ from .forms import CustomSignUpForm
 from .views import RegistrationCompleteView
 
 urlpatterns = [
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/', LoginView.as_view(
+        success_url='core:todo'),
+         name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('accounts/register/', RegistrationView.as_view(
         form_class=CustomSignUpForm,
