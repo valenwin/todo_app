@@ -15,7 +15,7 @@ class TaskAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created')
+    list_display = ('title', 'slug', 'created')
     list_filter = ('created', 'updated')
     search_fields = ('owner', 'title', 'description')
     raw_id_fields = ('owner',)

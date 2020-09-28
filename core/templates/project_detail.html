@@ -12,18 +12,26 @@
                         <h4>{{ project.description }}</h4>
                         <br/>
 
-                        <form class="form-horizontal form-inline">
+                        <form class="form-horizontal form-inline" action="." method="post">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <div id="project-input" class="col-sm-6">
-                                    <input id="project-name" type="text" class="form-control"
-                                           placeholder="Rename Your Project">
+                                    {% for field in form %}
+                                        {{ field }}
+                                    {% endfor %}
                                 </div> <!--col-sm-6 -->
                                 <div id="name-button" class="col-sm-1">
                                     <button id="project-name-button" type="submit" class="btn btn-default">
-                                        Submit
+                                        Edit
                                     </button>
                                 </div> <!-- col-sm-2 -->
                             </div> <!-- form-group -->
+                        </form>
+                        <form action="." method="post">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-danger pull-right">
+                                <a href="{{ project.get_delete_url }}"><i class="fa fa-trash-o"></i></a>
+                            </button>
                         </form>
 
                     </div> <!--panel-heading -->
@@ -69,15 +77,11 @@
             </div>
 
             <div class="col-md-3">
-                <div class="container">
-                    <div>
-                        <ul class="nav navbar-nav navbar-left btn-info">
-                            <li><a href="#contact" data-toggle="modal" style="color:#000;">
-                                <i id="plus-icon" class="fa fa-plus"></i>&nbsp;Add New Task</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <ul class="nav navbar-nav navbar-left btn-info">
+                    <li><a href="#contact" data-toggle="modal" style="color:#000;">
+                        <i id="plus-icon" class="fa fa-plus"></i>&nbsp;Add New Task</a>
+                    </li>
+                </ul>
             </div>
 
         </div>

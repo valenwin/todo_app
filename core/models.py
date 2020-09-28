@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.text import slugify
+
+from core.utils import custom_slugify
 
 
 class Project(models.Model):
@@ -20,11 +21,15 @@ class Project(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slugify(self.title)
+            self.slug = custom_slugify(self.title)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('core:project_detail',
+                       kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('core:project_delete',
                        kwargs={'slug': self.slug})
 
     def __str__(self):
