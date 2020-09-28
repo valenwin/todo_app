@@ -18,7 +18,12 @@
                             {% csrf_token %}
                             <td>
                                 {% for field in form %}
-                                    {{ field }}
+                                    {% if field.name == 'complete' %}
+                                        {{ field.label }}
+                                        {{ field }}
+                                    {% else %}
+                                        {{ field }}
+                                    {% endif %}
                                     <br>
                                 {% endfor %}
                                 <div class="form-group">

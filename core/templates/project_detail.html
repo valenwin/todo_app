@@ -35,10 +35,10 @@
                             <tr id="headerRow">
                                 <th>List Title</th>
                                 <th>Completed</th>
-                                <th>Update</th>
-                                <th>Remove</th>
                                 <th>Priority</th>
                                 <th>Due Date</th>
+                                <th>Update</th>
+                                <th>Remove</th>
                             </tr>
                             </thead>
 
@@ -46,11 +46,30 @@
                                 <tbody id="task-list">
                                 <tr>
                                     <td class="task word-td vert-align">{{ task.title }}</td>
-                                    <td class=" vert-align">
-                                        <button type="button" class="unchecked btn btn-default"><i
-                                                class="fa fa-check"></i>
-                                        </button>
-                                    </td>
+                                    {% if task.complete %}
+                                        <td class="vert-align alert-success">
+                                            <p></p><i class="fa fa-check"></i>
+                                        </td>
+                                    {% else %}
+                                        <td class="vert-align alert-danger">
+                                            <i class="fa fa-times"></i>
+                                        </td>
+                                    {% endif %}
+                                    {% if task.priority == 'low' %}
+                                        <td class="vert-align alert-success">
+                                            {{ task.priority }}
+                                        </td>
+                                    {% elif task.priority == 'medium' %}
+                                        <td class="vert-align alert-warning">
+                                            {{ task.priority }}
+                                        </td>
+                                    {% elif task.priority == 'high' %}
+                                        <td class="vert-align alert-danger">
+                                            {{ task.priority }}
+                                        </td>
+                                    {% endif %}
+                                    <td class="vert-align">{{ task.due_date }}</td>
+
                                     <td class=" vert-align">
                                         <a href="{{ task.get_update_url }}">
                                             <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i>
@@ -63,8 +82,6 @@
                                             </button>
                                         </a>
                                     </td>
-                                    <td>{{ task.priority }}</td>
-                                    <td>{{ task.due_date }}</td>
                                 </tr>
                                 </tbody>
                             {% endfor %}

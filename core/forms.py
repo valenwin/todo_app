@@ -38,11 +38,12 @@ class ProjectUpdateForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'priority', 'due_date')
+        fields = ('title', 'priority', 'due_date', 'complete')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control new-task',
                                             'placeholder': 'Task Name'}),
+            'complete': forms.CheckboxInput(attrs={'class': 'form-control new-task'}),
             'priority': forms.Select(attrs={'class': 'form-control new-task',
                                             'placeholder': 'Priority'}),
             'due_date': forms.DateTimeInput(attrs={'class': 'form-control new-task'}),
