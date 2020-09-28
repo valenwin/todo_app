@@ -52,12 +52,16 @@
                                         </button>
                                     </td>
                                     <td class=" vert-align">
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i>
-                                        </button>
+                                        <a href="{{ task.get_update_url }}">
+                                            <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                     <td class=" vert-align">
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>
-                                        </button>
+                                        <a href="{{ task.get_delete_url }}">
+                                            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                     <td>{{ task.priority }}</td>
                                     <td>{{ task.due_date }}</td>

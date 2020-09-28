@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Create Task</title>
+    <title>Edit Task "{{ task.title|title }}"</title>
 {% endblock %}
 
 {% block content %}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="panel-heading">
-                <h3 class="panel-title">Add New Task</h3>
+                <h3 class="panel-title">Edit Task</h3>
             </div>
             <div class="panel-body">
                 <table class="table table-striped">
@@ -23,7 +23,7 @@
                                 {% endfor %}
                                 <div class="form-group">
                                     <button id="new-task-button" type="submit" class="btn btn-success btn-block"><i
-                                            id="plus-icon" class="fa fa-plus"></i></button>
+                                            id="plus-icon" class="fa fa-edit"></i></button>
                                 </div>
                             </td>
                         </form>

@@ -69,3 +69,15 @@ class TaskCreateView(views.CreateView):
                             slug=self.kwargs.get('slug'))
         except ValueError:
             return redirect('core:todo')
+
+
+class TaskUpdateView(views.UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_update.html'
+
+
+class TaskDeleteView(views.DeleteView):
+    model = Task
+    template_name = 'task_delete.html'
+    success_url = reverse_lazy('core:todo')

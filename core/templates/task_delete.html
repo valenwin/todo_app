@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Delete Project "{{ project.title|title }}"</title>
+    <title>Delete Task "{{ task.title|title }}"</title>
 {% endblock %}
 
 {% block content %}
-
-    <!-- Home -->
-
     <div class="home">
         <div class="home_background parallax-window" data-parallax="scroll"
              style="background-image:url(https://www.gessato.com/wp-content/uploads/2017/08/modern-bicycle-design-yee-bike-3.jpg);"
@@ -23,9 +20,9 @@
                                 <div>
                                     <form action="" method="post">
                                         {% csrf_token %}
-                                        <h1>Are you sure you want to delete <b>{{ project.title|title }}</b> project?</h1>
+                                        <h1>Are you sure you want to delete <b>{{ task.title|title }}</b> task?</h1>
                                         <div class="mt-5 mb-5">
-                                            <a href="{{ project.get_absolute_url }}" class="btn btn-dark">Cancel</a>
+                                            <a href="{{ task.get_absolute_url }}" class="btn btn-dark">Cancel</a>
                                             <button type="submit" name="button" class="btn btn-danger">Delete</button>
                                         </div>
                                     </form>

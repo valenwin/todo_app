@@ -51,6 +51,7 @@ class Task(models.Model):
                                 default='low')
     due_date = models.DateTimeField(default=timezone.now)
     complete = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=250, default='test')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -59,3 +60,20 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = custom_slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('core:project_detail',
+                       kwargs={'slug': self.project.slug})
+
+    def get_update_url(self):
+        return reverse('core:update_task',
+                       kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('core:delete_task',
+                       kwargs={'slug': self.slug})
