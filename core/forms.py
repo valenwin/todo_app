@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Project
+from .models import Project, Task
 
 
 class ProjectForm(forms.ModelForm):
@@ -32,4 +32,18 @@ class ProjectUpdateForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control',
                                             'placeholder': 'Rename Your Project'}),
+        }
+
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ('title', 'priority', 'due_date')
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control new-task',
+                                            'placeholder': 'Task Name'}),
+            'priority': forms.Select(attrs={'class': 'form-control new-task',
+                                            'placeholder': 'Priority'}),
+            'due_date': forms.DateTimeInput(attrs={'class': 'form-control new-task'}),
         }

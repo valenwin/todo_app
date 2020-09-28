@@ -27,12 +27,6 @@
                                 </div> <!-- col-sm-2 -->
                             </div> <!-- form-group -->
                         </form>
-                        <form action="." method="post">
-                            {% csrf_token %}
-                            <button type="button" class="btn btn-danger pull-right">
-                                <a href="{{ project.get_delete_url }}"><i class="fa fa-trash-o"></i></a>
-                            </button>
-                        </form>
 
                     </div> <!--panel-heading -->
                     <div class="panel-body">
@@ -78,8 +72,12 @@
 
             <div class="col-md-3">
                 <ul class="nav navbar-nav navbar-left btn-info">
-                    <li><a href="#contact" data-toggle="modal" style="color:#000;">
-                        <i id="plus-icon" class="fa fa-plus"></i>&nbsp;Add New Task</a>
+                    <li><a href="{% url 'core:create_task' project.slug %}" data-toggle="modal" style="color:#000;">
+                        <i id="plus-icon" class="fa fa-plus"></i>&nbsp;&nbsp;Add New Task</a>
+                    </li>
+                    <br>
+                    <li><a href="{{ project.get_delete_url }}" data-toggle="modal" style="color:#000;">
+                        <i id="plus-icon" class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Project</a>
                     </li>
                 </ul>
             </div>

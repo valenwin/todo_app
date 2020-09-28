@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add New Task</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <form id="form" action="." method="post">
+                            {% csrf_token %}
+                            <td>
+                                {% for field in form %}
+                                    {{ field }}
+                                    <br>
+                                {% endfor %}
+                                <div class="form-group">
+                                    <button id="new-task-button" type="submit" class="btn btn-success btn-block"><i
+                                            id="plus-icon" class="fa fa-plus"></i></button>
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div> <!-- end panel-body -->
+        </div>
+    </div>
+{% endblock %}
