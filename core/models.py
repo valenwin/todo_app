@@ -20,7 +20,7 @@ class Project(models.Model):
         ordering = ('-created',)
 
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.slug or not self.id:
             self.slug = custom_slugify(self.title)
         super().save(*args, **kwargs)
 
@@ -59,10 +59,10 @@ class Task(models.Model):
         ordering = ('-created',)
 
     def __str__(self):
-        return self.title
+        return f'{self.project}: {self.title}'
 
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.slug or not self.id:
             self.slug = custom_slugify(self.title)
         super().save(*args, **kwargs)
 
