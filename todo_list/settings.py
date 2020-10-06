@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+
+import django_heroku
 from environs import Env
 
 env = Env()
@@ -26,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'fjdsfjsdfsdvycuxvjzb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['todo-list-app-django.herokuapp.com']
 
@@ -139,3 +141,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # login
 LOGIN_REDIRECT_URL = 'core:todo'
 LOGOUT_REDIRECT_URL = 'core:todo'
+
+django_heroku.settings(locals())
