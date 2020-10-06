@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'fjdsfjsdfsdvycuxvjzb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['todo-list-app-django.herokuapp.com']
 
@@ -142,4 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'core:todo'
 LOGOUT_REDIRECT_URL = 'core:todo'
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
