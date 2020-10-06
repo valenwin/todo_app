@@ -3,6 +3,9 @@
 ## Overview
 #### Django3 
 
+# Deploy on Heroku server
+https://todo-list-app-django.herokuapp.com/
+
 # Deploy project on your local machine
 
 1 - To deploy project on your local machine create new virtual environment and execute this command:
