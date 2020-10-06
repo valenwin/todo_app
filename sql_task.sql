@@ -14,7 +14,7 @@ ORDER BY task_count DESC;
 SELECT cp.id, cp.title, count(core_task.id) AS task_count
 FROM core_task
 INNER JOIN core_project cp on core_task.project_id = cp.id
-GROUP BY cp.title
+GROUP BY cp.id, cp.title
 ORDER BY cp.title;
 
 -- get the tasks for all projects having the name beginning with "N" letter
